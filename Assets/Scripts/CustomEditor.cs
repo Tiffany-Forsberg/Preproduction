@@ -24,6 +24,15 @@ public class CustomEditor : EditorWindow
 
     void OnGUI()
     {
+        settings = EditorGUILayout.ObjectField("EditorSettings", settings,
+            typeof(EditorSettings), false) as EditorSettings;
+
+        if (!settings)
+        {
+            UnityEngine.Debug.LogWarning("Add settings");
+            return;
+        }
+
         if (startPositions.Count < settings.Objects.Length)
         {
             startPositions = new Dictionary<string, UnityEngine.Vector2>();
@@ -35,14 +44,6 @@ public class CustomEditor : EditorWindow
 
         GUILayout.Label("Settings", EditorStyles.boldLabel);
 
-        settings = EditorGUILayout.ObjectField("EditorSettings", settings,
-            typeof(EditorSettings), false) as EditorSettings;
-
-        if (!settings)
-        {
-            UnityEngine.Debug.LogWarning("Add settings");
-            return;
-        }
 
         foreach (var obj in settings.Objects)
         {
