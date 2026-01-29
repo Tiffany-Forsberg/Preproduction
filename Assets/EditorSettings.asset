@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EditorSettings
   m_EditorClassIdentifier: 
   Objects:
-  - Name: Platform
+  - Name: Semi Solid Platform
     Prefab: {fileID: 6194428451836971257, guid: 6752e5845d60ac140884c5b984b551fb, type: 3}
   - Name: Spike
     Prefab: {fileID: 5058541517863532390, guid: e2ba0092fbaaf3c45bdbf4af1b1be5dd, type: 3}
-  - Name: afajnfwn
-    Prefab: {fileID: 5058541517863532390, guid: e2ba0092fbaaf3c45bdbf4af1b1be5dd, type: 3}
+  - Name: Solid Platform
+    Prefab: {fileID: 4182726869792712625, guid: 5debd97777c188f4e927ac0d33da9eb7, type: 3}
