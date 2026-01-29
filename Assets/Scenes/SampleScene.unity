@@ -622,12 +622,12 @@ MonoBehaviour:
   playerRB: {fileID: 413888026}
   playerPhysics: {fileID: 413888029}
   speed: 12
-  gravityStrength: 10
+  gravityStrength: 40
   dragCoefficient: 0.005
   accelerationFactor: 0.3
   decelerationFactor: 0.1
-  jumpVelocity: 5
-  maxJumpHeight: 20
+  jumpVelocity: 15
+  maxJumpHeight: 30
 --- !u!1001 &1087387756
 PrefabInstance:
   m_ObjectHideFlags: 0
