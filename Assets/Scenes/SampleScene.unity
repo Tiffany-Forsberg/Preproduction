@@ -623,9 +623,10 @@ MonoBehaviour:
   playerPhysics: {fileID: 413888029}
   speed: 12
   gravityStrength: 10
-  dragCoefficient: 0.2
+  dragCoefficient: 0.005
   accelerationFactor: 0.3
-  jumpVelocity: 12
+  decelerationFactor: 0.1
+  jumpVelocity: 25
 --- !u!1001 &1087387756
 PrefabInstance:
   m_ObjectHideFlags: 0

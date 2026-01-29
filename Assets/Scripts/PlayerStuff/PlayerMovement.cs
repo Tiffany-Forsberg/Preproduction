@@ -22,9 +22,17 @@ public class PlayerMovement : MonoBehaviour
     
     [Tooltip("The fraction that the speed will move to the goal amount per fixed frame")]
     [SerializeField, Range(0f,1f)] private float accelerationFactor;
+    [Tooltip("The fraction that the speed will slow per frame if an input is NOT being held")]
+    [SerializeField, Range(0f,1f)] private float decelerationFactor;
     
     [Tooltip("The jump velocity applied when jumping, applied instantly")]
     [SerializeField] private float jumpVelocity;
+
+    public bool onGround
+    {
+        get;
+        private set;
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,8 +48,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentInput.x != 0)
-        playerRB.linearVelocityX = Mathf.MoveTowards(playerRB.linearVelocityX, currentInput.x*speed, accelerationFactor);
+        if (currentInput.x == 0)
+        {
+            playerRB.linearVelocityX = Mathf.MoveTowards(playerRB.linearVelocityX, 0, decelerationFactor);
+        }
+        else
+        {
+            playerRB.linearVelocityX = Mathf.MoveTowards(playerRB.linearVelocityX, currentInput.x*speed, accelerationFactor);
+        }
         
         // Apply gravity
         playerRB.linearVelocityY -= gravityStrength * Time.fixedDeltaTime;
