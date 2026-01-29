@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -27,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     
     [Tooltip("The jump velocity applied when jumping, applied instantly")]
     [SerializeField] private float jumpVelocity;
+
+    private bool jumpInputHeld;
+
+    [Tooltip("The maximum jump height achievable")]
+    [SerializeField] private float maxJumpHeight;
 
     public bool onGround
     {
@@ -62,9 +68,16 @@ public class PlayerMovement : MonoBehaviour
         
         // Apply drag
         playerRB.linearVelocity = playerRB.linearVelocity.normalized * (playerRB.linearVelocity.magnitude - (playerRB.linearVelocity.sqrMagnitude * dragCoefficient));
+
+        if (jumpInputHeld)
+        {
+            UnityEngine.Debug.Log("Send zucchini");
+            playerRB.linearVelocityY = MathF.Min(playerRB.linearVelocityY + jumpVelocity, maxJumpHeight);
+            if (playerRB.linearVelocityY == maxJumpHeight) jumpInputHeld = false;
+        }
     }
 
-    public void OnPlayerInput(InputAction.CallbackContext context)
+    public void OnPlayerMovement(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
         
@@ -73,11 +86,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        bool buttonDown = context.started;
-
-        if (buttonDown && playerPhysics.OnGround)
+        if (context.performed && playerPhysics.OnGround)
         {
-            playerRB.linearVelocityY = jumpVelocity;
+            jumpInputHeld = context.performed;
+        }
+        if (!playerPhysics.OnGround && context.canceled)
+        {
+            jumpInputHeld = false;
         }
     }
 }

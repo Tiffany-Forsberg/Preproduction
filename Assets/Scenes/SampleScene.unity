@@ -626,7 +626,8 @@ MonoBehaviour:
   dragCoefficient: 0.005
   accelerationFactor: 0.3
   decelerationFactor: 0.1
-  jumpVelocity: 25
+  jumpVelocity: 5
+  maxJumpHeight: 20
 --- !u!1001 &1087387756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -882,7 +883,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 913436316}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnPlayerInput
+        m_MethodName: OnPlayerMovement
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
