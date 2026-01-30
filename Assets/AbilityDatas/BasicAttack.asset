@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: BasicAttack
   Effects:
-  - rid: -2
-  - rid: -2
+  - rid: 8253719999261180156
+  - rid: 8253719999261180157
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 8253719999261180156
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        Amount: 2
+    - rid: 8253719999261180157
+      type: {class: KnockbackEffect, ns: , asm: Assembly-CSharp}
+      data:
+        Force: -5
